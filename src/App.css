@@ -1,38 +1,122 @@
-.App {
+/* styles.css */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #e0f7fa; /* Couleur de fond légèrement bleutée */
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden; /* Empêche les barres de défilement */
+}
+
+.container {
+  background: white;
+  border-radius: 12px; /* Coins plus arrondis */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Ombre plus prononcée */
+  padding: 30px; /* Plus d'espace autour du contenu */
+  width: 350px; /* Largeur légèrement augmentée */
   text-align: center;
+  position: relative; /* Position relative pour les effets */
+  animation: fadeIn 1s ease-out;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.title {
+  font-size: 26px; /* Taille de police du titre légèrement augmentée */
+  color: #00796b; /* Couleur verte */
+  margin-bottom: 20px;
+  animation: slideIn 1s ease-out;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.info {
+  text-align: left; /* Alignement à gauche pour les éléments */
+  line-height: 1.6; /* Espacement entre les lignes */
+}
+
+.info p {
+  font-size: 18px; /* Taille de police des paragraphes augmentée */
+  color: #004d40; /* Couleur de texte sombre */
+  margin: 10px 0; /* Espacement vertical entre les éléments */
+  opacity: 0;
+  animation: fadeInText 1s ease-out forwards;
+  transform: translateY(10px); /* Décalage initial pour effet de montée */
+}
+
+/* Animations infinies */
+@keyframes pulse {
+  0% {
+      transform: scale(1);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+  50% {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+  }
+  100% {
+      transform: scale(1);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+@keyframes colorChange {
+  0% {
+      background-color: #e0f7fa;
+  }
+  50% {
+      background-color: #b2ebf2;
+  }
+  100% {
+      background-color: #e0f7fa;
+  }
 }
 
-.App-link {
-  color: #61dafb;
+/* Application des animations */
+.container {
+  animation: fadeIn 1s ease-out, pulse 2s infinite;
 }
 
-@keyframes App-logo-spin {
+.title {
+  animation: slideIn 1s ease-out, rotate 10s linear infinite;
+}
+
+.info p:nth-child(odd) {
+  animation: fadeInText 1s ease-out forwards, colorChange 3s infinite;
+}
+
+.info p:nth-child(even) {
+  animation: fadeInText 1s ease-out forwards, colorChange 3s infinite;
+}
+
+@keyframes fadeIn {
   from {
-    transform: rotate(0deg);
+      opacity: 0;
+      transform: translateY(-30px);
   }
   to {
-    transform: rotate(360deg);
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+      transform: translateX(-30px);
+      opacity: 0;
+  }
+  to {
+      transform: translateX(0);
+      opacity: 1;
+  }
+}
+
+@keyframes fadeInText {
+  from {
+      opacity: 0;
+      transform: translateY(10px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
   }
 }
